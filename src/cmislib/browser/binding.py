@@ -751,8 +751,8 @@ class BrowserRepository(object):
                 'cmisVersionSupported': self.data['cmisVersionSupported'],
                 'changesIncomplete': self.data['changesIncomplete'],
                 'changesOnType': self.data['changesOnType'],
-                'principalIdAnonymous': self.data['principalIdAnonymous'],
-                'principalIdAnyone': self.data['principalIdAnyone']
+                'principalIdAnonymous': (self.data['principalIdAnonymous'] if 'principalIdAnonymous' in self.data else None),
+                'principalIdAnyone': (self.data['principalIdAnyone'] if 'principalIdAnyone' in self.data else None)
             }
             if 'thinClientURI' in self.data:
                 repoInfo['thinClientURI'] = self.data['thinClientURI']
