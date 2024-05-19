@@ -71,6 +71,9 @@ class BrowserBinding(Binding):
             return response.json()
         return response
 
+    def getContent(self, url, session, **kwargs):
+        return super(BrowserBinding, self).get(url, session, **kwargs)
+
     def post(self, url, session, payload, contentType, **kwargs):
 
         """
@@ -1953,8 +1956,8 @@ class BrowserDocument(BrowserCmisObject):
             'objectId': self.getObjectId(),
             'cmisselector': 'content',
         }
-        result = self._cmisClient.binding.get(
-            url, self._cmisClient.session, **params)
+        result = self._cmisClient.binding.getContent(
+                url, self._cmisClient.session, **params)
         return BytesIO(result.content)
 
     def setContentStream(self, contentFile, contentType=None):
